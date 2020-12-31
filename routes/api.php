@@ -17,3 +17,11 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::namespace('API')->name('api.')->group(function (){
+    Route::prefix('cars')->group(function () {
+        
+        Route::get('/', 'carController@index')->name('index_cars');
+        Route::get('/{id}', 'carController@show')->name('single_cars');
+            
+    });
+});
